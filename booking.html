@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Aura Picnic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🌙</span> Aura Picnic
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="packages.html" class="nav-link">Packages</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="booking.html" class="nav-link book-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="booking" class="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Experience</h2>
+            <div class="booking-summary">
+                <p>Selected package: <strong id="selectedPackage">None</strong></p>
+                <p>Estimated price: <strong id="estimatedPrice">—</strong></p>
+                <p>Saved local orders: <strong id="localOrdersCount">0</strong></p>
+                <p class="form-note">Orders are stored locally in your browser; no backend is required.</p>
+            </div>
+            <div class="booking-wrapper">
+                <form class="booking-form" id="bookingForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventType">Event Type *</label>
+                            <select id="eventType" name="eventType" required>
+                                <option value="">Select an event type</option>
+                                <option value="romantic">Picnic</option>
+                                <option value="birthday">Birthday Setup</option>
+                                <option value="proposal">Proposal Setup</option>
+                                <option value="bridal">Bridal Shower</option>
+                                <option value="corporate">Corporate Events</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="packageSelect">Selected Package *</label>
+                            <select id="packageSelect" name="packageSelect" required>
+                                <option value="">Choose a package</option>
+                                <option value="Silver Package">Silver Package</option>
+                                <option value="Gold Package">Gold Package</option>
+                                <option value="Premium Package">Premium Package</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventDate">Preferred Date *</label>
+                            <input type="date" id="eventDate" name="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Number of Guests *</label>
+                            <input type="number" id="guests" name="guests" min="1" required>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">Tell Us More About Your Vision</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Share any specific details, preferences, or special requests..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Booking Inquiry</button>
+                    <p class="form-note">We'll get back to you within 24 hours to confirm your booking.</p>
+                </form>
+            </div>
+            <div id="invoiceSection" class="invoice-section hidden">
+                <div class="invoice-card">
+                    <div class="invoice-header">
+                        <h3>Booking Report</h3>
+                        <p class="invoice-note">Save or print this report as proof of your booking request.</p>
+                    </div>
+                    <div class="invoice-details">
+                        <div class="invoice-row"><span>Invoice ID:</span><strong id="invoiceId">—</strong></div>
+                        <div class="invoice-row"><span>Booked On:</span><strong id="invoiceSavedAt">—</strong></div>
+                        <div class="invoice-row"><span>Name:</span><strong id="invoiceName">—</strong></div>
+                        <div class="invoice-row"><span>Email:</span><strong id="invoiceEmail">—</strong></div>
+                        <div class="invoice-row"><span>Phone:</span><strong id="invoicePhone">—</strong></div>
+                        <div class="invoice-row"><span>Event Type:</span><strong id="invoiceEventType">—</strong></div>
+                        <div class="invoice-row"><span>Package:</span><strong id="invoicePackage">—</strong></div>
+                        <div class="invoice-row"><span>Event Date:</span><strong id="invoiceDate">—</strong></div>
+                        <div class="invoice-row"><span>Guests:</span><strong id="invoiceGuests">—</strong></div>
+                        <div class="invoice-row"><span>Estimated Total:</span><strong id="invoiceTotal">—</strong></div>
+                        <div class="invoice-row invoice-message"><span>Notes:</span><strong id="invoiceMessage">No special notes provided.</strong></div>
+                    </div>
+                    <button type="button" id="printInvoiceBtn" class="submit-btn">Print Report</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Aura Picnic</h4>
+                    <p>Creating unforgettable luxury outdoor experiences for special moments.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" title="Instagram">📷</a>
+                        <a href="#" class="social-icon" title="WhatsApp">💬</a>
+                        <a href="#" class="social-icon" title="Email">✉️</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                        <li><a href="booking.html">Booking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Picnics</a></li>
+                        <li><a href="services.html">Birthdays</a></li>
+                        <li><a href="services.html">Bridal Showers</a></li>
+                        <li><a href="services.html">Corporate Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📧 info@aurapicnic.com</p>
+                    <p>📱 +1 (555) 123-4567</p>
+                    <p>📍 123 Garden Lane, Park City, ST 12345</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Aura Picnic. All rights reserved. | Crafted with love ✨</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTopBtn" class="back-to-top" title="Back to top">↑</button>
+    <script src="script.js"></script>
+</body>
+</html>
