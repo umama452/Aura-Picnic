@@ -640,7 +640,6 @@ const eventTypeMap = {
 const eventTypeLabels = {
     romantic: 'Picnic',
     birthday: 'Birthday Setup',
-    proposal: 'Proposal Setup',
     bridal: 'Bridal Shower',
     corporate: 'Corporate Events',
     other: 'Other'
@@ -668,24 +667,27 @@ document.querySelectorAll('.service-btn').forEach(button => {
 
 // ============ PACKAGE BUTTON HANDLER ============
 /**
- * Handle clicks on package buttons
+ * Handle clicks on package buttons (only for buttons within package cards)
  */
-document.querySelectorAll('.package-btn').forEach(button => {
+document.querySelectorAll('.package-card .package-btn').forEach(button => {
     button.addEventListener('click', (e) => {
         e.preventDefault();
-        const packageName = button.closest('.package-card').querySelector('h3').textContent;
-        saveSelection(STORAGE_KEYS.selectedPackage, packageName);
+        const packageCard = button.closest('.package-card');
+        if (packageCard) {
+            const packageName = packageCard.querySelector('h3').textContent;
+            saveSelection(STORAGE_KEYS.selectedPackage, packageName);
 
-        const bookingSection = document.getElementById('booking');
-        if (bookingSection) {
-            updatePackageSummary(packageName, guestsInput ? guestsInput.value : null);
-            if (packageSelect) {
-                packageSelect.value = packageName;
-                packageSelect.dispatchEvent(new Event('change', { bubbles: true }));
+            const bookingSection = document.getElementById('booking');
+            if (bookingSection) {
+                updatePackageSummary(packageName, guestsInput ? guestsInput.value : null);
+                if (packageSelect) {
+                    packageSelect.value = packageName;
+                    packageSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                bookingSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                window.location.href = 'booking.html';
             }
-            bookingSection.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            window.location.href = 'booking.html';
         }
     });
 });
